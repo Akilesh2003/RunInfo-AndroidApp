@@ -2,4 +2,6 @@
     <!-- Default margin between images and along the sides -->
     <dimen name="image_margin">16dp</dimen>
     <dimen name="image_margin_demo">30dp</dimen>
+    <dimen name="history_block_margin">12dp</dimen>
+
 </resources>

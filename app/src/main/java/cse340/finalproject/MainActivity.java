@@ -105,13 +105,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float z = event.values[2];
 
             // Update the TextView with the acceleration values
-            String accelerationText = "X: " + x + "\nY: " + y + "\nZ: " + z;
+            String accelerationText = "X: " + x + " m/s^2" + "\nY: " + y + " m/s^2" + "\nZ: "
+                    + z + " m/s^2";
             accelerationTextView.setText(accelerationText);
 
             String resultantAccText = "Resultant acceleration: ";
-            resultantAccelerationTextView.setText(resultantAccText +
+            resultantAccelerationTextView.setText(resultantAccText + "\n" +
                     String.format("%.4f", resultantAcceleration(x,y,z))
-            + " metre/second^2");
+            + " m/s^2");
         }
     }
 

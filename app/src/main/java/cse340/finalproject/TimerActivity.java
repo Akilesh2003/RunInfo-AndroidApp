@@ -2,6 +2,7 @@ package cse340.finalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +13,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class TimerActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -49,6 +54,10 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             private long startTime;
             private long elapsedTime;
 
+            double averageAcceleration;
+            double averageVelocity;
+            double distanceRuninMiles;
+
 
 
             @Override
@@ -70,9 +79,9 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                                 // Calculate elapsed time
                                 elapsedTime = System.currentTimeMillis() - startTime;
 
-                                double averageAcceleration = sumAcceleration/accelerationCount;
-                                double averageVelocity = 0.5 * averageAcceleration * elapsedTime/1000.0;
-                                double distanceRuninMiles = 0.5 * averageAcceleration *
+                                averageAcceleration = sumAcceleration/accelerationCount;
+                                averageVelocity = 0.5 * averageAcceleration * elapsedTime/1000.0;
+                                distanceRuninMiles = 0.5 * averageAcceleration *
                                         Math.pow(elapsedTime/1000.0, 2) * 0.000621371;
 
                                 // Update the timer display on the UI thread
@@ -87,12 +96,12 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
                                         TextView accelerationTextView = findViewById(R.id.accDetails);
                                         accelerationTextView.setText("Average Acceleration: " +
-                                                String.format("%.4f", averageAcceleration) + " metre/second^2");
+                                                String.format("%.4f", averageAcceleration) + " m/s^2");
 
                                         TextView averageVelocityTextView = findViewById(R.id.avgVelTxt);
                                         averageVelocityTextView.setText("Average Velocity: " +
                                                 String.format("%.4f", averageVelocity) +
-                                                " metre/second");
+                                                " m/s");
 
                                         TextView distanceTextView = findViewById(R.id.totalDistanceTxt);
                                         distanceTextView.setText("Distance Equivalent: " +
@@ -115,6 +124,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                     // Stop the timer
                     isTimerRunning = false;
                     timerButton.setText("Start Timer"); // Update button text
+                    saveRunHistory(timeMs, averageAcceleration, averageVelocity, distanceRuninMiles);
+
                 }
             }
         });
@@ -200,4 +211,24 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
         return String.format("%02d:%02d:%02d", hours, minutes % 60, seconds % 60);
     }
+
+    private void saveRunHistory(long timeMs, double averageAcceleration, double averageVelocity, double distanceRuninMiles) {
+        // Get the shared preferences instance
+        SharedPreferences sharedPreferences = getSharedPreferences("RunHistory", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Get the current timestamp
+        String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+
+        // Create a string representing the run details
+        String runDetails = "Time: " + formatTime(timeMs) +
+                "\nAverage Acceleration: " + String.format("%.4f", averageAcceleration) + " m/s^2" +
+                "\nAverage Velocity: " + String.format("%.4f", averageVelocity) + " m/s" +
+                "\nDistance Equivalent: " + String.format("%.4f", distanceRuninMiles) + " miles";
+
+        // Save the run details in shared preferences with the timestamp as the key
+        editor.putString(timestamp, runDetails);
+        editor.apply();
+    }
+
 }
