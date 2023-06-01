@@ -45,7 +45,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
             linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
         } else {
             // Linear acceleration sensor is not available on this device
-            accelerationTextView.setText("Linear acceleration sensor not available");
+            accelerationTextView.setText(R.string.sensorUnavailable);
         }
 
         Button timerButton = findViewById(R.id.timerButton);
@@ -66,7 +66,7 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                     // Start the timer
                     isTimerRunning = true;
                     startTime = System.currentTimeMillis();
-                    timerButton.setText("Stop Timer"); // Update button text
+                    timerButton.setText(R.string.stopTimer); // Update button text
 
                     sumAcceleration = 0;
                     accelerationCount = 0;
@@ -90,7 +90,6 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
                                     public void run() {
                                         // Update the timer display (assuming you have a TextView with id timerTextView)
                                         TextView timerTextView = findViewById(R.id.timerTextView);
-                                        System.out.println("elapsed timekldsnfkjdskjad sf: " + elapsedTime);
                                         timeMs = elapsedTime;
                                         timerTextView.setText(formatTime(elapsedTime));
 

@@ -3,4 +3,9 @@
     <string name="accessible_tab">Contains %d tabs; number %d is selected </string>
     <string name="accessibility_tab_format_selected">Tab: %s</string>
     <string name="accessibility_tab_format">Tab %s</string>
+    <string name="sensorUnavailable">Linear acceleration sensor not available</string>
+    <string name="resultantAcc">Resultant acceleration: </string>
+    <string name="accUnits"> m/s^2</string>
+    <string name="accInfo">X: %f m/s^2 Y: %f m/s^2 Z: %f m/s^2</string>
+    <string name="stopTimer">Stop Timer</string>
 </resources>
