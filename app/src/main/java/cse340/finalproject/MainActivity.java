@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         accelerationTextView = findViewById(R.id.accelerationTextView);
+        resultantAccelerationTextView = findViewById(R.id.resultantAccTxt);
 
         // Initialize the sensor manager
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else {
             // Linear acceleration sensor is not available on this device
             accelerationTextView.setText("Linear acceleration sensor not available");
+            resultantAccelerationTextView.setText("Linear acceleration sensor not available");
         }
 
 
@@ -105,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             // Update the TextView with the acceleration values
             String accelerationText = "X: " + x + "\nY: " + y + "\nZ: " + z;
             accelerationTextView.setText(accelerationText);
+
+            String resultantAccText = "Resultant acceleration: ";
+            resultantAccelerationTextView.setText(resultantAccText +
+                    String.format("%.4f", resultantAcceleration(x,y,z))
+            + " metre/second^2");
         }
     }
 

@@ -34,7 +34,7 @@
         android:id="@+id/resultantAccTxt"
         android:layout_gravity="center"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/currAccText"
+        app:layout_constraintTop_toBottomOf="@id/accelerationTextView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />
