@@ -28,7 +28,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle"
         android:paddingTop="60dp"
-        android:textSize="30dp"/>
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,38 +54,41 @@
         android:paddingLeft="8dp"
         />
 
-
-    <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/left"
-        android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        >
-    </Button>
-    <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/listMode"
-        android:text="Timer"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintLeft_toRightOf="@id/left"
-        >
-    </Button>
-
-    <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/right"
-        android:text="History"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/listMode"
-        >
+    <include layout="@layout/navigation_tab"/>
 
 
-    </Button>
+
+<!--    <Button-->
+<!--        android:layout_width="137dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:id="@+id/left"-->
+<!--        android:text="Home"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        >-->
+<!--    </Button>-->
+<!--    <Button-->
+<!--        android:layout_width="137dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:id="@+id/listMode"-->
+<!--        android:text="Timer"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+
+<!--        app:layout_constraintLeft_toRightOf="@id/left"-->
+<!--        >-->
+<!--    </Button>-->
+
+<!--    <Button-->
+<!--        android:layout_width="137dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:id="@+id/right"-->
+<!--        android:text="History"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/listMode"-->
+<!--        >-->
+
+
+<!--    </Button>-->
 <!--    <FrameLayout-->
 <!--        android:id="@+id/tab_contents"-->
 <!--        android:layout_width="match_parent"-->
