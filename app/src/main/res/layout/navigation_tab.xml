@@ -5,35 +5,33 @@
     android:layout_height="match_parent">
 
     <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/left"
-        android:text="Home"
+        android:layout_width="@dimen/navButtonWidth"
+        android:layout_height="@dimen/navButtonHeight"
+        android:id="@+id/homeButton"
+        android:text="@string/home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         >
     </Button>
     <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/listMode"
-        android:text="Timer"
+        android:layout_width="@dimen/navButtonWidth"
+        android:layout_height="@dimen/navButtonHeight"
+        android:id="@+id/timerScreenButton"
+        android:text="@string/timer"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintLeft_toRightOf="@id/left"
+        app:layout_constraintLeft_toRightOf="@id/homeButton"
         >
     </Button>
 
     <Button
-        android:layout_width="137dp"
-        android:layout_height="50dp"
-        android:id="@+id/right"
-        android:text="History"
+        android:layout_width="@dimen/navButtonWidth"
+        android:layout_height="@dimen/navButtonHeight"
+        android:id="@+id/historyButton"
+        android:text="@string/history"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/listMode"
+        app:layout_constraintLeft_toRightOf="@id/timerScreenButton"
         >
-
-
     </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

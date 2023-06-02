@@ -20,14 +20,14 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements SensorActivity.SensorListener {
-    public static final FrameLayout.LayoutParams PARAMS = new FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
-    private SensorManager sensorManager;
-    private Sensor linearAccelerationSensor;
+    // TextView to display the current acceleration
     private TextView accelerationTextView;
+
+    // TextView to display the resultant acceleration
     private TextView resultantAccelerationTextView;
 
+    // Sensor object to manage sensor
     private SensorActivity sensorActivity;
 
     @Override
@@ -46,21 +46,9 @@ public class MainActivity extends AppCompatActivity implements SensorActivity.Se
             resultantAccelerationTextView.setText(R.string.sensorUnavailable);
         }
 
-//        // Initialize the sensor manager
-//        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//
-//        // Check if the linear acceleration sensor is available
-//        if (sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) != null) {
-//            // Get a reference to the linear acceleration sensor
-//            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-//        } else {
-//            // Linear acceleration sensor is not available on this device
-//            accelerationTextView.setText(R.string.sensorUnavailable);
-//            resultantAccelerationTextView.setText(R.string.sensorUnavailable);
-//        }
 
-
-        Button leftButton = findViewById(R.id.left);
+        // Initialize the home button
+        Button leftButton = findViewById(R.id.homeButton);
         leftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements SensorActivity.Se
             }
         });
 
-        Button midButton = findViewById(R.id.listMode);
+        // Initialize the timer screen button
+        Button midButton = findViewById(R.id.timerScreenButton);
         midButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +67,8 @@ public class MainActivity extends AppCompatActivity implements SensorActivity.Se
             }
         });
 
-        Button rightButton = findViewById(R.id.right);
+        // Initialize the history screen button
+        Button rightButton = findViewById(R.id.historyButton);
         rightButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,20 +81,14 @@ public class MainActivity extends AppCompatActivity implements SensorActivity.Se
     @Override
     protected void onResume() {
         super.onResume();
-        // Register the sensor listener
-//        if (linearAccelerationSensor != null) {
-//            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
-//        }
+
         sensorActivity.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the sensor listener to save battery
-//        if (linearAccelerationSensor != null) {
-//            sensorManager.unregisterListener(this);
-//        }
+
         sensorActivity.stop();
     }
 
@@ -116,34 +100,7 @@ public class MainActivity extends AppCompatActivity implements SensorActivity.Se
         accelerationTextView.setText(accelerationText);
 
         resultantAccelerationTextView.setText(getResources().getString(
-                R.string.resultantAcc, String.format("%.4f", sensorActivity.resultantAcceleration(x, y, z))));
+                R.string.resultantAcc, String.format("%.4f",
+                        sensorActivity.resultantAcceleration(x, y, z))));
     }
-
-//    @Override
-//    public void onSensorChanged(SensorEvent event) {
-//        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-//            // Get the acceleration values
-//            float x = event.values[0];
-//            float y = event.values[1];
-//            float z = event.values[2];
-//
-//            // Update the TextView with the acceleration values
-//            String accelerationText = getResources().getString(
-//                    R.string.accInfo, x, y, z);
-//            accelerationTextView.setText(accelerationText);
-//
-//            resultantAccelerationTextView.setText(getResources().getString(
-//                    R.string.resultantAcc,String.format("%.4f", resultantAcceleration(x,y,z))
-//            ));
-//        }
-//    }
-//
-//    @Override
-//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-//        // Not implemented in this assignment.
-//    }
-
-//    private double resultantAcceleration(float x, float y, float z) {
-//        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-//    }
 }

@@ -23,4 +23,8 @@
     <string name="startTimer">START TIMER</string>
     <string name="runHistory">Run History</string>
     <string name="deleteAll">Delete All</string>
+    <string name="home">Home</string>
+    <string name="timer">Timer</string>
+    <string name="history">History</string>
+    <string name="timestamp">Timestamp: %s\n%s</string>
 </resources>
