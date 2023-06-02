@@ -109,10 +109,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     R.string.accInfo, x, y, z);
             accelerationTextView.setText(accelerationText);
 
-            String resultantAccText = getResources().getString(R.string.resultantAcc);
-            resultantAccelerationTextView.setText(resultantAccText + "\n" +
-                    String.format("%.4f", resultantAcceleration(x,y,z))
-            + getResources().getString(R.string.accUnits));
+            resultantAccelerationTextView.setText(getResources().getString(
+                    R.string.resultantAcc,String.format("%.4f", resultantAcceleration(x,y,z))
+            ));
         }
     }
 

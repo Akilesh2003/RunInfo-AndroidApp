@@ -4,8 +4,23 @@
     <string name="accessibility_tab_format_selected">Tab: %s</string>
     <string name="accessibility_tab_format">Tab %s</string>
     <string name="sensorUnavailable">Linear acceleration sensor not available</string>
-    <string name="resultantAcc">Resultant acceleration: </string>
+    <string name="resultantAcc">Resultant acceleration:\n%s m/s^2</string>
     <string name="accUnits"> m/s^2</string>
-    <string name="accInfo">X: %f m/s^2 Y: %f m/s^2 Z: %f m/s^2</string>
-    <string name="stopTimer">Stop Timer</string>
+    <string name="velUnits"> m/s</string>
+    <string name="distUnits"> miles</string>
+    <string name="accInfo">X: %f m/s^2\nY: %f m/s^2\nZ: %f m/s^2</string>
+    <string name="stopTimer">STOP TIMER</string>
+    <string name="avgAcc">Average Acceleration: </string>
+    <string name="avgVel">Average Velocity:  </string>
+    <string name="distEq">Distance Equivalent: </string>
+    <string name="dateFormat">yyyy-MM-dd HH:mm:ss</string>
+    <string name="time">Time: %s \n</string>
+    <string name="runInfo">Average Acceleration: %s m/s^2\nAverage Velocity: %s m/s\nDistance
+        Equivalent: %s miles\n</string>
+    <string name="currAcc">Current Acceleration</string>
+    <string name="appTitle">RunInfo</string>
+    <string name="recordSession">Record new session</string>
+    <string name="startTimer">START TIMER</string>
+    <string name="runHistory">Run History</string>
+    <string name="deleteAll">Delete All</string>
 </resources>

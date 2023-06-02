@@ -10,36 +10,35 @@
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RunInfo"
-        android:textSize="50dp"
+        android:text="@string/appTitle"
+        android:textSize="@dimen/appTitleSize"
         app:layout_constraintLeft_toLeftOf="parent"
-
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:paddingTop="20dp"/>
+        android:layout_marginTop="@dimen/midPadding"/>
 
     <TextView
         android:id="@+id/currAccText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="Current Acceleration"
+        android:text="@string/currAcc"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitle"
-        android:paddingTop="60dp"
-        android:textSize="30sp"/>
+        android:layout_marginTop="@dimen/extraTopPadding"
+        android:textSize="@dimen/midTitleSize"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/accelerationTextView"
         android:layout_gravity="center"
-        android:textSize="24sp"
+        android:textSize="@dimen/insideMidTitleSize"
         app:layout_constraintTop_toBottomOf="@id/currAccText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:paddingBottom="20dp"
+        android:layout_marginBottom="@dimen/midPadding"
         />
 
     <TextView
@@ -47,69 +46,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/resultantAccTxt"
         android:layout_gravity="center"
-        android:textSize="30dp"
+        android:textSize="@dimen/midTitleSize"
         app:layout_constraintTop_toBottomOf="@id/accelerationTextView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:paddingLeft="8dp"
+        android:layout_marginLeft="@dimen/smallPadding"
+        android:layout_marginTop="@dimen/image_margin_demo"
         />
 
     <include layout="@layout/navigation_tab"/>
-
-
-
-<!--    <Button-->
-<!--        android:layout_width="137dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:id="@+id/left"-->
-<!--        android:text="Home"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        >-->
-<!--    </Button>-->
-<!--    <Button-->
-<!--        android:layout_width="137dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:id="@+id/listMode"-->
-<!--        android:text="Timer"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-
-<!--        app:layout_constraintLeft_toRightOf="@id/left"-->
-<!--        >-->
-<!--    </Button>-->
-
-<!--    <Button-->
-<!--        android:layout_width="137dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:id="@+id/right"-->
-<!--        android:text="History"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintLeft_toRightOf="@id/listMode"-->
-<!--        >-->
-
-
-<!--    </Button>-->
-<!--    <FrameLayout-->
-<!--        android:id="@+id/tab_contents"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"-->
-<!--        android:background="@color/transparent"/>-->
-
-<!--    <cse340.finalproject.TabView-->
-<!--        android:id="@+id/bottom_nav"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:focusable="true"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:background="@color/colorPrimary"-->
-<!--        app:itemIconTint="@color/white"-->
-<!--        app:itemTextColor="@color/white"-->
-<!--        app:menu="@menu/bottom_nav"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

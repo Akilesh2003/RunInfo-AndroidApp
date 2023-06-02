@@ -3,5 +3,14 @@
     <dimen name="image_margin">16dp</dimen>
     <dimen name="image_margin_demo">30dp</dimen>
     <dimen name="history_block_margin">12dp</dimen>
+    <dimen name="appTitleSize">50sp</dimen>
+    <dimen name="midTitleSize">30sp</dimen>
+    <dimen name="insideMidTitleSize">24sp</dimen>
+    <dimen name="midPadding">20dp</dimen>
+    <dimen name="extraTopPadding">60dp</dimen>
+    <dimen name="smallPadding">8dp</dimen>
+    <dimen name="largeMargin">80dp</dimen>
+    <dimen name="accelerationMargin">36dp</dimen>
+    <dimen name="noMargin">0dp</dimen>
 
 </resources>
