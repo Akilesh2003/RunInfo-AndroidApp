@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class TimerActivity extends AppCompatActivity implements SensorEventListener {
+public class TimerActivity extends AppCompatActivity implements SensorActivity.SensorListener {
 
     public long timeMs;
 
@@ -32,6 +32,8 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     private double sumAcceleration;
     private int accelerationCount;
 
+    private SensorActivity sensorActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +43,24 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
 
         accelerationTextView = findViewById(R.id.accDetails);
 
+        sensorActivity = new SensorActivity(this,this);
+
         // Initialize the sensor manager
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         // Check if the linear acceleration sensor is available
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) != null) {
-            // Get a reference to the linear acceleration sensor
-            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        } else {
-            // Linear acceleration sensor is not available on this device
+        if (sensorActivity.linearAccelerationSensor == null) {
             accelerationTextView.setText(R.string.sensorUnavailable);
         }
+
+//        // Check if the linear acceleration sensor is available
+//        if (sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) != null) {
+//            // Get a reference to the linear acceleration sensor
+//            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+//        } else {
+//            // Linear acceleration sensor is not available on this device
+//            accelerationTextView.setText(R.string.sensorUnavailable);
+//        }
 
         Button timerButton = findViewById(R.id.timerButton);
         timerButton.setOnClickListener(new View.OnClickListener() {
@@ -161,46 +170,55 @@ public class TimerActivity extends AppCompatActivity implements SensorEventListe
     protected void onResume() {
         super.onResume();
         // Register the sensor listener
-        if (linearAccelerationSensor != null) {
-            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
+//        if (linearAccelerationSensor != null) {
+//            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+//        }
+        sensorActivity.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // Unregister the sensor listener to save battery
-        if (linearAccelerationSensor != null) {
-            sensorManager.unregisterListener(this);
-        }
+//        if (linearAccelerationSensor != null) {
+//            sensorManager.unregisterListener(this);
+//        }
+        sensorActivity.stop();
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-            // Get the acceleration values
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
-
-            double resultantAcc = resultantAcceleration(x, y, z);
-
-            // Add up the acceleration values
-            sumAcceleration += resultantAcc;
-
-            // Increment the times acceleration is recorded
-            accelerationCount++;
-        }
+    public void onAccelerationChanged(float x, float y, float z) {
+        // Handle acceleration changes
+        sumAcceleration += sensorActivity.resultantAcceleration(x, y, z);
+        accelerationCount++;
     }
 
-    private double resultantAcceleration(float x, float y, float z) {
-        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Not implemented in this assignment.
-    }
+//    @Override
+//    public void onSensorChanged(SensorEvent event) {
+//        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
+//            // Get the acceleration values
+//            float x = event.values[0];
+//            float y = event.values[1];
+//            float z = event.values[2];
+//
+//            double resultantAcc = resultantAcceleration(x, y, z);
+//
+//            // Add up the acceleration values
+//            sumAcceleration += resultantAcc;
+//
+//            // Increment the times acceleration is recorded
+//            accelerationCount++;
+//        }
+//    }
+//
+//    private double resultantAcceleration(float x, float y, float z) {
+//        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+//    }
+//
+//    @Override
+//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//        // Not implemented in this assignment.
+//    }
 
     // Helper method to format the elapsed time as HH:MM:SS
     private String formatTime(long elapsedTime) {

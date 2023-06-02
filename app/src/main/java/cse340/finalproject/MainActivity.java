@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity implements SensorActivity.SensorListener {
     public static final FrameLayout.LayoutParams PARAMS = new FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
 
@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor linearAccelerationSensor;
     private TextView accelerationTextView;
     private TextView resultantAccelerationTextView;
+
+    private SensorActivity sensorActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +38,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         accelerationTextView = findViewById(R.id.accelerationTextView);
         resultantAccelerationTextView = findViewById(R.id.resultantAccTxt);
 
-        // Initialize the sensor manager
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensorActivity = new SensorActivity(this, this);
 
         // Check if the linear acceleration sensor is available
-        if (sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) != null) {
-            // Get a reference to the linear acceleration sensor
-            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-        } else {
-            // Linear acceleration sensor is not available on this device
+        if (sensorActivity.linearAccelerationSensor == null) {
             accelerationTextView.setText(R.string.sensorUnavailable);
             resultantAccelerationTextView.setText(R.string.sensorUnavailable);
         }
+
+//        // Initialize the sensor manager
+//        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//
+//        // Check if the linear acceleration sensor is available
+//        if (sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION) != null) {
+//            // Get a reference to the linear acceleration sensor
+//            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+//        } else {
+//            // Linear acceleration sensor is not available on this device
+//            accelerationTextView.setText(R.string.sensorUnavailable);
+//            resultantAccelerationTextView.setText(R.string.sensorUnavailable);
+//        }
 
 
         Button leftButton = findViewById(R.id.left);
@@ -82,45 +92,58 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onResume() {
         super.onResume();
         // Register the sensor listener
-        if (linearAccelerationSensor != null) {
-            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
-        }
+//        if (linearAccelerationSensor != null) {
+//            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+//        }
+        sensorActivity.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         // Unregister the sensor listener to save battery
-        if (linearAccelerationSensor != null) {
-            sensorManager.unregisterListener(this);
-        }
+//        if (linearAccelerationSensor != null) {
+//            sensorManager.unregisterListener(this);
+//        }
+        sensorActivity.stop();
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-            // Get the acceleration values
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+    public void onAccelerationChanged(float x, float y, float z) {
+        // Handle acceleration changes
+        // Update the TextViews with the acceleration values
+        String accelerationText = getResources().getString(R.string.accInfo, x, y, z);
+        accelerationTextView.setText(accelerationText);
 
-            // Update the TextView with the acceleration values
-            String accelerationText = getResources().getString(
-                    R.string.accInfo, x, y, z);
-            accelerationTextView.setText(accelerationText);
-
-            resultantAccelerationTextView.setText(getResources().getString(
-                    R.string.resultantAcc,String.format("%.4f", resultantAcceleration(x,y,z))
-            ));
-        }
+        resultantAccelerationTextView.setText(getResources().getString(
+                R.string.resultantAcc, String.format("%.4f", sensorActivity.resultantAcceleration(x, y, z))));
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Not implemented in this assignment.
-    }
+//    @Override
+//    public void onSensorChanged(SensorEvent event) {
+//        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
+//            // Get the acceleration values
+//            float x = event.values[0];
+//            float y = event.values[1];
+//            float z = event.values[2];
+//
+//            // Update the TextView with the acceleration values
+//            String accelerationText = getResources().getString(
+//                    R.string.accInfo, x, y, z);
+//            accelerationTextView.setText(accelerationText);
+//
+//            resultantAccelerationTextView.setText(getResources().getString(
+//                    R.string.resultantAcc,String.format("%.4f", resultantAcceleration(x,y,z))
+//            ));
+//        }
+//    }
+//
+//    @Override
+//    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+//        // Not implemented in this assignment.
+//    }
 
-    private double resultantAcceleration(float x, float y, float z) {
-        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-    }
+//    private double resultantAcceleration(float x, float y, float z) {
+//        return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+//    }
 }
