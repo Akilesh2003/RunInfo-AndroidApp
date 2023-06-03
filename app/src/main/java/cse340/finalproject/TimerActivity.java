@@ -175,7 +175,11 @@ public class TimerActivity extends AppCompatActivity implements SensorActivity.S
         accelerationCount++;
     }
 
-    // Helper method to format the elapsed time as HH:MM:SS
+    /***
+     * Helper method to format the elapsed time as HH:MM:SS
+     * @param elapsedTime time that timer ran for
+     * @return A string formatted to show hours, minutes and seconds
+     */
     private String formatTime(long elapsedTime) {
         long seconds = elapsedTime / 1000;
         long minutes = seconds / 60;
@@ -184,6 +188,13 @@ public class TimerActivity extends AppCompatActivity implements SensorActivity.S
         return String.format("%02d:%02d:%02d", hours, minutes % 60, seconds % 60);
     }
 
+    /***
+     * Method that saves information about run in shared preferences, to be used later
+     * @param timeMs Time in milliseconds
+     * @param averageAcceleration Average acceleration during the time period
+     * @param averageVelocity Average velocity during the time period
+     * @param distanceRuninMiles Distance run in miles during the time period
+     */
     private void saveRunHistory(long timeMs, double averageAcceleration,
                                 double averageVelocity, double distanceRuninMiles) {
         // Get the shared preferences instance

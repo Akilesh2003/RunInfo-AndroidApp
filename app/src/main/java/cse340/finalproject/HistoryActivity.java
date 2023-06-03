@@ -77,6 +77,10 @@ public class HistoryActivity extends AppCompatActivity {
         loadRunHistory();
     }
 
+    /***
+     * Method to load past run information from shared preferences, and display
+     * it in the history screen
+     */
     private void loadRunHistory() {
         // Get the shared preferences instance
         SharedPreferences sharedPreferences = getSharedPreferences("RunHistory",
