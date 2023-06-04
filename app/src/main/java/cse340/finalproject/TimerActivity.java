@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,6 +53,8 @@ public class TimerActivity extends AppCompatActivity implements SensorActivity.S
         }
 
         Button timerButton = findViewById(R.id.timerButton);
+        timerButton.setBackgroundColor(ContextCompat.getColor(getBaseContext(),
+                R.color.timerButton));
         timerButton.setOnClickListener(new View.OnClickListener() {
             private boolean isTimerRunning = false;
             private long startTime;
@@ -198,7 +202,8 @@ public class TimerActivity extends AppCompatActivity implements SensorActivity.S
     private void saveRunHistory(long timeMs, double averageAcceleration,
                                 double averageVelocity, double distanceRuninMiles) {
         // Get the shared preferences instance
-        SharedPreferences sharedPreferences = getSharedPreferences("RunHistory",
+        SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(
+                R.string.sharedPrefKey),
                 MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 

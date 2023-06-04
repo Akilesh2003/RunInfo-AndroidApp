@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/runHistory"
+        android:contentDescription="@string/historyTitleDesc"
         android:textSize="@dimen/midTitleSize"
         android:id="@+id/historyTxt"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/deleteAllHistory"
         android:text="@string/deleteAll"
+        android:contentDescription="@string/deleteDesc"
         app:layout_constraintTop_toBottomOf="@id/historyTxt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,10 +32,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/noMargin"
         app:layout_constraintTop_toBottomOf="@id/deleteAllHistory"
-        app:layout_constraintBottom_toTopOf="@id/left"
-        android:layout_marginTop="@dimen/smallPadding">
+        app:layout_constraintBottom_toTopOf="@id/homeButton"
+        android:layout_marginTop="@dimen/smallPadding"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -45,6 +48,5 @@
 
     </ScrollView>
 
-    <include layout="@layout/navigation_tab"
-        app:layout_constraintTop_toBottomOf="@id/runHistoryLayout"/>
+    <include layout="@layout/navigation_tab"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@
     <dimen name="accelerationMargin">36dp</dimen>
     <dimen name="noMargin">0dp</dimen>
     <dimen name="navButtonWidth">137dp</dimen>
-    <dimen name="navButtonHeight">50dp</dimen>
+    <dimen name="navButtonHeight">80dp</dimen>
     <dimen name="historyBlockTextSize">24sp</dimen>
 
 </resources>

@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/recordSessionTxt"
         android:text="@string/recordSession"
+        android:contentDescription="@string/recordSession"
 
         android:textSize="@dimen/midTitleSize"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,15 +22,16 @@
 
     <Button
         android:id="@+id/timerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/navButtonWidth"
+        android:layout_height="@dimen/navButtonHeight"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/largeMargin"
         android:textSize="@dimen/insideMidTitleSize"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recordSessionTxt"
-        android:text="@string/startTimer"/>
+        android:text="@string/startTimer"
+        android:contentDescription="@string/startStopDesc"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,6 +39,7 @@
         android:id="@+id/timerTextView"
         android:layout_gravity="center"
         android:textSize="@dimen/insideMidTitleSize"
+        android:contentDescription="@string/elapsedTimeDesc"
         app:layout_constraintTop_toBottomOf="@id/timerButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

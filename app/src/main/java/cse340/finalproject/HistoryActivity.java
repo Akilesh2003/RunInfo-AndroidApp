@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Map;
 
@@ -56,12 +57,13 @@ public class HistoryActivity extends AppCompatActivity {
 
         // Initialize button that deletes history
         Button deleteAllButton = findViewById(R.id.deleteAllHistory);
+        deleteAllButton.setBackgroundColor(ContextCompat.getColor(getBaseContext(),
+                R.color.deleteButton));
         deleteAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences("RunHistory",
-                        MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString
+                                (R.string.sharedPrefKey), MODE_PRIVATE);
 
                 // Clear the shared preferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();

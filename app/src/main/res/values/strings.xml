@@ -27,4 +27,15 @@
     <string name="timer">Timer</string>
     <string name="history">History</string>
     <string name="timestamp">Timestamp: %s\n%s</string>
+    <string name="homeButtonDesc">Home Page Button</string>
+    <string name="timerTabDesc">Timer Page Button</string>
+    <string name="historyButtonDesc">History Page Button</string>
+    <string name="appTitleDesc">App Title RunInfo</string>
+    <string name="accDesc">Information about current acceleration</string>
+    <string name="resultantAccDesc">Resultant Acceleration</string>
+    <string name="startStopDesc">Start or Stop Timer Button</string>
+    <string name="elapsedTimeDesc">Elapsed time</string>
+    <string name="historyTitleDesc">Run History Screen</string>
+    <string name="deleteDesc">Delete all history button</string>
+    <string name="sharedPrefKey">RunHistory</string>
 </resources>

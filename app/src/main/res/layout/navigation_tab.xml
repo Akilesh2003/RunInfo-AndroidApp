@@ -9,6 +9,7 @@
         android:layout_height="@dimen/navButtonHeight"
         android:id="@+id/homeButton"
         android:text="@string/home"
+        android:contentDescription="@string/homeButtonDesc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         >
@@ -18,6 +19,7 @@
         android:layout_height="@dimen/navButtonHeight"
         android:id="@+id/timerScreenButton"
         android:text="@string/timer"
+        android:contentDescription="@string/timerTabDesc"
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintLeft_toRightOf="@id/homeButton"
@@ -29,6 +31,7 @@
         android:layout_height="@dimen/navButtonHeight"
         android:id="@+id/historyButton"
         android:text="@string/history"
+        android:contentDescription="@string/historyButtonDesc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/timerScreenButton"
         >
