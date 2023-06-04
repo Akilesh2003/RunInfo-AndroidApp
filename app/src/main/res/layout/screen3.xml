@@ -30,7 +30,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/noMargin"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/deleteAllHistory"
         app:layout_constraintBottom_toTopOf="@id/left"
         android:layout_marginTop="@dimen/smallPadding">
@@ -45,5 +45,6 @@
 
     </ScrollView>
 
-    <include layout="@layout/navigation_tab"/>
+    <include layout="@layout/navigation_tab"
+        app:layout_constraintTop_toBottomOf="@id/runHistoryLayout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
